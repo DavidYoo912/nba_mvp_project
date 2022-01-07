@@ -8,7 +8,7 @@
 In this project, the objective is to build a NBA MVP prediction model and forecast the upcoming MVP for the current (2022) season. 
 
 To run the notebook files using the required dependencies, simply create a new environment using the yml file with conda
-'''
+```
 conda env create -f environment.yml
-'''
+```
 then switch kernel to the nba_mvp_project 
