@@ -11,4 +11,4 @@ To run the notebook files using the required dependencies, simply create a new e
 ```
 conda env create -f environment.yml
 ```
-then switch kernel to the nba_mvp_project 
+then switch to the **nba_mvp_project** kernel
