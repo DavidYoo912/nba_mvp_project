@@ -12,3 +12,10 @@ To run the notebook files using the required dependencies, simply create a new e
 conda env create -f environment.yml
 ```
 then switch to the **nba_mvp_project** kernel
+
+## Data
+A combination of pandas HTML table scraping function and this basketball reference scraping tool were utilized to pull raw data.
+CSV files have been saved in this folder
+
+## Notebook
+Notebook folder contains the main notebook for the analysis **nba_mvp_prediction.ipynb** as well as the notebook for parameter searching **parameter_tuning.ipynb**
