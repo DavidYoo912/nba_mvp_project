@@ -483,15 +483,22 @@ dependencies:
   - zope.interface=5.4.0=py38h9ed2024_0
   - zstd=1.4.9=h322a384_0
   - pip:
+    - aiohttp==3.8.1
+    - aiosignal==1.2.0
+    - async-timeout==4.0.2
     - basketball-reference-web-scraper==4.12.1
     - certifi==2018.10.15
     - chardet==3.0.4
+    - dataframe-image==0.1.1
+    - frozenlist==1.2.0
     - idna==2.7
     - lightgbm==3.3.1
     - lxml==4.5.1
+    - multidict==5.2.0
     - pytz==2018.6
     - requests==2.20.0
     - shap==0.40.0
     - slicer==0.0.7
     - urllib3==1.24.3
+    - yarl==1.7.2
 prefix: /Users/dbtjdals/opt/anaconda3/envs/nba_mvp_project
