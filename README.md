@@ -23,3 +23,9 @@ CSV files have been saved in this folder
 Notebook folder contains the following:  
 * **nba_mvp_prediction.ipynb** main notebook for the analysis
 * **parameter_tuning.ipynb** notebook for parameter searching
+
+## Scripts
+scripts folder contains: 
+* **data_scraping.ipynb** notebook used to scrape raw data from sources 
+
+update 1/10/2022: notebook migrating to python files to serve as modules; still in the works
