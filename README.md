@@ -17,7 +17,6 @@ then switch to the **nba_mvp_project** kernel
 A combination of pandas HTML table scraping function and basketball reference scraping tool were utilized to pull raw data.
 * **master_table.csv**: contains statistics of historical MVP candidates
 * **data_2022.csv**: contains statistics of current season's MVP candidates
-CSV files have been saved in this folder 
 
 ## Notebook
 Notebook folder contains the following:  
