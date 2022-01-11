@@ -5,7 +5,7 @@
 ![last commit](https://img.shields.io/github/last-commit/davidyoo912/nba_mvp_project?color=orange)
 ![pull requests](https://img.shields.io/github/issues-pr/davidyoo912/nba_mvp_project)
 
-In this project, the objective is to build a NBA MVP prediction model and forecast the upcoming MVP for the current (2022) season. 
+In this project, the objective is to build a NBA MVP prediction model and forecast the upcoming MVP for the current (2022) season. see medium post: https://medium.com/@david_yoo/predicting-the-next-nba-mvp-using-machine-learning-62615bfcff75
 
 To run the notebook files using the required dependencies, simply create a new environment using the yml file with conda
 ```
