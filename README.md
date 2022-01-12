@@ -4,6 +4,7 @@
 ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
 ![last commit](https://img.shields.io/github/last-commit/davidyoo912/nba_mvp_project?color=orange)
 ![pull requests](https://img.shields.io/github/issues-pr/davidyoo912/nba_mvp_project)
+![forks](https://img.shields.io/github/forks/DavidYoo912/nba_mvp_project?style=social)
 
 In this project, the objective is to build a NBA MVP prediction model and forecast the upcoming MVP for the current (2022) season. see medium post: https://medium.com/@david_yoo/predicting-the-next-nba-mvp-using-machine-learning-62615bfcff75
 
