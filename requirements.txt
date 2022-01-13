@@ -2,10 +2,11 @@
 # $ conda create --name <env> --file <this file>
 # platform: osx-64
 _py-xgboost-mutex=2.0=cpu_0
-tqdm
 numpy
-pandas
 matplotlib
+pandas
 seaborn
-xgboost
 shap
+streamlit
+tqdm
+xgboost
