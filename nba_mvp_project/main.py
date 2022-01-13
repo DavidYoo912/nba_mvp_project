@@ -3,7 +3,7 @@ import streamlit.components.v1 as components
 import os
 import pandas as pd
 from pathlib import Path
-from model import train_test_split_by_year, run_model, run_model_average
+from model import train_test_split_by_year, run_model
 from xgboost import XGBRegressor
 import shap
 import warnings
@@ -27,13 +27,12 @@ with model_validation:
     st.subheader("Model Validation")
     st.text("Utilize this section to check out model prediction of previous years")
 
-    ##RUN FOR ALL YEARS
-    xgb_avg_mae, xgb_avg_r2, xgb_accuracy, xgb_summary, xgb_models, xgb_cols = run_model_average(df=master_table,
-                  regressor = XGBRegressor(n_estimators=16, max_depth=5, learning_rate = 0.2745, subsample=1, colsample_bytree=1),
-                 scaling=False, print_metrics=True)
+    xgb_data_path = Path(__file__).parents[1] / 'data/xgboost_summary.csv'
+    xgb_summary = pd.read_csv(xgb_data_path)
 
     #show dataframe
     value_counts = xgb_summary['Label'].value_counts()
+    xgb_accuracy = value_counts[0] / (value_counts[0] + value_counts[1])
     st.dataframe(xgb_summary)
     st.markdown(f"Overall Accuracy: ({value_counts[0]} / {value_counts[0] + value_counts[1]}) = **{round(xgb_accuracy, 4) * 100}%**")
 
