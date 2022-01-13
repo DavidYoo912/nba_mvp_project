@@ -10,6 +10,7 @@ from xgboost import XGBRegressor
 import shap
 import streamlit as st
 
+
 #drop cols
 to_drop = [
     'Rank',
@@ -151,7 +152,7 @@ def run_model_average(df, regressor, scaling=False, print_metrics=False):
 
 def validate_year(year, df):
     X_train, y_train, X_test, y_test, cols = train_test_split_by_year(year, df, scaling=False)
-    model, mae, r2, predicted_winner, actual_winner, mvp_race = run_model(
+    model_spec_year, mae, r2, predicted_winner, actual_winner, mvp_race = run_model(
                                                                     XGBRegressor(
                                                                         n_estimators=16,
                                                                         max_depth=5, 
@@ -167,11 +168,11 @@ def validate_year(year, df):
 
     X_test_df = pd.DataFrame(columns=cols, data = X_test)
     
-    st.write(f'Predicted: {predicted_winner}')
-    st.write(f'Actual: {actual_winner}')
-    avg_feature_importance(models=[model], cols=cols)
+    st.write(f'Predicted: **{predicted_winner}**')
+    st.write(f'Actual: **{actual_winner}**')
+    #avg_feature_importance(models=[model], cols=cols)
     
-    return model, X_test_df, mvp_race
+    return model_spec_year, X_test_df, mvp_race
 
 def avg_feature_importance(models, cols):
     lst = []
