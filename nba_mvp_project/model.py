@@ -98,6 +98,57 @@ def run_model(regressor, X_train, y_train, X_test, y_test, df, year):
     predicted_winner = mvp_race[mvp_race['predicted_share'] == mvp_race['predicted_share'].max()]['Player']
     return model, mae, r2, predicted_winner.iloc[0], actual_winner.iloc[0], mvp_race
 
+def run_model_average(df, regressor, scaling=False, print_metrics=False):
+    mae_lst = []
+    r2_lst = []
+    predicted_lst = []
+    actual_lst = []
+    label_lst =[]
+    model_lst = []
+
+    years = [year for year in range(1980, 2022)]
+    for year in tqdm(years):
+        X_train, y_train, X_test, y_test, cols = train_test_split_by_year(year=year, df=df, scaling=False)
+        model, mae, r2, predicted_winner, actual_winner, mvp_race = run_model(regressor,
+                                                             X_train,
+                                                              y_train,
+                                                              X_test,
+                                                              y_test,
+                                                              df=df,
+                                                              year=year,
+                                                            )
+        if predicted_winner == actual_winner:
+            label = 'correct'
+        else:
+            label = 'incorrect'
+        mae_lst.append(mae)
+        r2_lst.append(r2)
+        predicted_lst.append(predicted_winner)
+        actual_lst.append(actual_winner)
+        label_lst.append(label)
+        model_lst.append(model)
+    d = {
+    'year': years,
+    'MAE': mae_lst,
+    'R squared': r2_lst,
+    'Predicted MVP': predicted_lst,
+    'Actual MVP': actual_lst,
+    'Label': label_lst
+    }
+
+    summary = pd.DataFrame(d)
+    correct_count = summary['Label'].value_counts().iloc[0]
+    incorrect_count = summary['Label'].value_counts().iloc[1]
+    accuracy = correct_count / (correct_count + incorrect_count)
+    avg_mae = summary['MAE'].mean()
+    avg_r2  = summary['R squared'].mean()
+    
+    if print_metrics == True:
+        print(f"Average MAE: {avg_mae}")
+        print(f"Average R squared: {avg_r2}")
+        print(f"Prediction accuracy: {accuracy}")
+    return avg_mae, avg_r2, accuracy, summary, model_lst, cols
+
 def validate_year(year, df):
     X_train, y_train, X_test, y_test, cols = train_test_split_by_year(year, df, scaling=False)
     model, mae, r2, predicted_winner, actual_winner, mvp_race = run_model(
