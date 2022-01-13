@@ -5,6 +5,8 @@ import pandas as pd
 from model import validate_year
 import shap
 
+st.set_page_config(layout="wide")
+
 data_path = os.path.dirname(os.getcwd()) + '/data' + '/master_table.csv'
 master_table = pd.read_csv(data_path)
 
@@ -20,8 +22,8 @@ with header:
 with model_validation:
     st.subheader("Model Validation")
     st.text("Utilize this section to check out model prediction of previous years")
-    st.markdown("Years **CORRECTLY** predicted: 1980, 1981, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1995, 1996, 1997, 1998, 1999, 2000, 2002, 2003, 2004, 2007, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021")
-    st.markdown("Years **INCORRECTLY** predicted: 1982, 1993, 1994, 2001, 2005, 2006, 2008")
+    #st.markdown("Years **CORRECTLY** predicted: 1980, 1981, 1983, 1984, 1985, 1986, 1987, 1988, 1989, 1990, 1991, 1992, 1995, 1996, 1997, 1998, 1999, 2000, 2002, 2003, 2004, 2007, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021")
+    #st.markdown("Years **INCORRECTLY** predicted: 1982, 1993, 1994, 2001, 2005, 2006, 2008")
     st.markdown("Overall Accuracy: (35 / 42) = **83.33%**")
 
     year_selected = st.selectbox(
@@ -47,8 +49,6 @@ with model_validation:
         explainer = shap.TreeExplainer(model)
         # Calculate Shap values
         shap_values = explainer.shap_values(data_for_prediction_array)
-        #shap.initjs()
-        #display(shap.force_plot(explainer.expected_value, shap_values, data_for_prediction))
         plot = shap.force_plot(explainer.expected_value, shap_values, data_for_prediction)
         return plot
 

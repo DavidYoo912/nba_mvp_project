@@ -99,7 +99,7 @@ def run_model(regressor, X_train, y_train, X_test, y_test, df, year):
     return model, mae, r2, predicted_winner.iloc[0], actual_winner.iloc[0], mvp_race
 
 def validate_year(year, df):
-    X_train, y_train, X_test, y_test, cols = train_test_split_by_year(year, df=df, scaling=False)
+    X_train, y_train, X_test, y_test, cols = train_test_split_by_year(year, df, scaling=False)
     model, mae, r2, predicted_winner, actual_winner, mvp_race = run_model(
                                                                     XGBRegressor(
                                                                         n_estimators=16,
@@ -107,7 +107,7 @@ def validate_year(year, df):
                                                                         learning_rate = 0.2745,
                                                                         subsample=1,
                                                                         colsample_bytree=1),
-                                              X_train, y_train, X_test, y_test, df=df, year=year)
+                                              X_train, y_train, X_test, y_test, df, year=year)
     # shift column 'Name' to first position
     nineth_column = mvp_race.pop('predicted_share')
     # first_column) function
