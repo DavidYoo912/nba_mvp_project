@@ -19,6 +19,10 @@ A combination of pandas HTML table scraping function and basketball reference sc
 * **master_table.csv**: contains statistics of historical MVP candidates
 * **data_2022.csv**: contains statistics of current season's MVP candidates
 
+## NBA MVP Project
+* application deployed on streamlit (still in the works) 
+* https://share.streamlit.io/davidyoo912/nba_mvp_project/main/nba_mvp_project/main.py
+
 ## Notebook
 Notebook folder contains the following:  
 * **nba_mvp_prediction.ipynb**: main notebook for the analysis
@@ -26,6 +30,7 @@ Notebook folder contains the following:
 
 ## Scripts
 scripts folder contains: 
-* **data_scraping.ipynb**: notebook used to scrape raw data from sources 
+* **data_preprocessing.ipynb**: notebook used to scrape raw data from sources 
+* **data_preprocessing.py**: python file used to scrape raw data from sources 
 
-update 1/10/2022: notebook migrating to python files to serve as modules; still in the works
+both files serve as identical functions
