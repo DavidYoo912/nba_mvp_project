@@ -2,6 +2,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 import os
 import pandas as pd
+from pathlib import Path
 from model import train_test_split_by_year, run_model, run_model_average
 from xgboost import XGBRegressor
 import shap
@@ -10,7 +11,7 @@ warnings.filterwarnings('ignore')
 
 st.set_page_config(layout="wide")
 
-data_path = os.path.dirname(os.getcwd()) + '/data' + '/master_table.csv'
+data_path = Path(__file__).parents[1] / 'data/master_table.csv'
 master_table = pd.read_csv(data_path)
 
 header = st.container()
