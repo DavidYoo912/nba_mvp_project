@@ -12,7 +12,7 @@ To run the notebook files using the required dependencies, simply create a new e
 ```
 conda env create -f environment.yml
 ```
-then switch to the **nba_mvp_project** kernel
+then switch to the **nba_mvp_env** kernel
 
 ## Data
 A combination of pandas HTML table scraping function and basketball reference scraping tool were utilized to pull raw data.
