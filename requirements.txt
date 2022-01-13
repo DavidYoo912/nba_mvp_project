@@ -1,7 +1,6 @@
 # This file may be used to create an environment using:
 # $ conda create --name <env> --file <this file>
 # platform: osx-64
-_py-xgboost-mutex=2.0=cpu_0
 numpy
 matplotlib
 pandas
