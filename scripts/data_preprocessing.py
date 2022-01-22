@@ -188,23 +188,27 @@ def find_mvp_candidate_names(url):
     html = requests.get(url).content
     soup = BeautifulSoup(html)
     remove_line = 'Last week’s ranking'
+    remove_line2 = 'ET'
+    remove_line3 = 'The Next Five'
 
     top_five = []
     next_five = [] 
 
-    for line in soup.find_all("h3")[1:-1]:
+    for line in soup.find_all("strong")[1:-1]:
         if remove_line not in str(line):
-            name_raw = str(line).split(',')[0]
-            name_raw = name_raw.split('.')[1]
-            name = name_raw[1:]
-            top_five.append(name)
+            if remove_line2 not in str(line):
+                if remove_line3 not in str(line):
+                    name_raw = str(line).split(',')[0]
+                    name_raw = name_raw.split('.')[1]
+                    name = name_raw[1:]
+                    top_five.append(name)
 
     for line in soup.find_all("p"):
         if 'week: ' in str(line):
             name_raw = str(line).split(',')[0]
             name_raw = name_raw.split('.')[1]
             name = name_raw[1:]
-            name = name.split('>')[1][1:]
+            #name = name.split('>')[1][1:]
             next_five.append(name)    
     top_ten = top_five + next_five
     return top_ten
