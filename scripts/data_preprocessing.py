@@ -185,6 +185,7 @@ def filter_basic_stats(df):
 def find_mvp_candidate_names(url):
     #2022 candidate table
     url = url
+    
     html = requests.get(url).content
     soup = BeautifulSoup(html)
     remove_line = 'Last week’s ranking'
@@ -192,8 +193,18 @@ def find_mvp_candidate_names(url):
     remove_line3 = 'The Next Five'
 
     top_five = []
-    next_five = [] 
+    next_five_pre = [] 
 
+    ######### TOP 5 extract #######
+    method_1_lst = []
+    for line in soup.find_all("h3")[1:-1]:
+        if remove_line not in str(line):
+            name_raw = str(line).split(',')[0]
+            name_raw = name_raw.split('.')[1]
+            name = name_raw[1:]
+            method_1_lst.append(name)
+
+    method_2_lst = []
     for line in soup.find_all("strong")[1:-1]:
         if remove_line not in str(line):
             if remove_line2 not in str(line):
@@ -201,7 +212,15 @@ def find_mvp_candidate_names(url):
                     name_raw = str(line).split(',')[0]
                     name_raw = name_raw.split('.')[1]
                     name = name_raw[1:]
-                    top_five.append(name)
+                    method_2_lst.append(name)
+
+    top_five = method_1_lst
+    for i in method_2_lst:
+        if i not in top_five:
+            top_five.append(i)
+    top_five = [i for i in top_five if i != '/strong>']
+
+    ######### NEXT 5 extract #######
 
     for line in soup.find_all("p"):
         if 'week: ' in str(line):
@@ -209,7 +228,15 @@ def find_mvp_candidate_names(url):
             name_raw = name_raw.split('.')[1]
             name = name_raw[1:]
             #name = name.split('>')[1][1:]
-            next_five.append(name)    
+            next_five_pre.append(name)
+    next_five = [] 
+    for name in next_five_pre:
+        if '/strong>' in name:
+            name = name.split('>')[1][1:]
+            next_five.append(name)
+        else:
+            next_five.append(name)
+
     top_ten = top_five + next_five
     return top_ten
 
@@ -237,7 +264,7 @@ def extract_current_mvp_candidates():
     #fix character in name Jokić'
     joined_table_2022.loc[joined_table_2022['Player'] == 'Nikola Jokić', 'Player'] = 'Nikola Jokic'
 
-    top_ten = find_mvp_candidate_names(url= 'https://www.nba.com/news/kia-mvp-ladder-jan-7-2022-edition')
+    top_ten = find_mvp_candidate_names(url= 'https://www.nba.com/news/kia-mvp-ladder-jan-28-edition')
 
     joined_table_2022 = joined_table_2022[joined_table_2022['Player'].isin(top_ten)]
     joined_table_2022 = adjust_vorp(df=joined_table_2022)
