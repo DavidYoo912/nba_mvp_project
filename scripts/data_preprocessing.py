@@ -264,7 +264,7 @@ def extract_current_mvp_candidates():
     #fix character in name Jokić'
     joined_table_2022.loc[joined_table_2022['Player'] == 'Nikola Jokić', 'Player'] = 'Nikola Jokic'
 
-    top_ten = find_mvp_candidate_names(url= 'https://www.nba.com/news/kia-mvp-ladder-jan-28-edition')
+    top_ten = find_mvp_candidate_names(url= 'https://www.nba.com/news/kia-mvp-ladder-feb-11-edition')
 
     joined_table_2022 = joined_table_2022[joined_table_2022['Player'].isin(top_ten)]
     joined_table_2022 = adjust_vorp(df=joined_table_2022)
